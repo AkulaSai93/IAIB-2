@@ -31,8 +31,11 @@ export default function ScrollReveal() {
     let pending = [...els];
     const check = (instant: boolean) => {
       const line = window.innerHeight * 0.88;
+      // at the foot of the page nothing can scroll any higher, so whatever is
+      // still waiting (the footer wordmark sits below the line) shows now
+      const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
       pending = pending.filter((el) => {
-        if (el.getBoundingClientRect().top > line) return true;
+        if (!atEnd && el.getBoundingClientRect().top > line) return true;
         el.classList.add("rv-in");
         if (instant) el.classList.add("rv-now");
         return false;

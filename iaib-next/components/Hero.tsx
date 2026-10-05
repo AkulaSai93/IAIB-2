@@ -5,7 +5,7 @@ import { YT_ID } from "@/lib/data";
 import { useLightbox } from "./Lightbox";
 import PixelBot from "./PixelBot";
 import PartnerStrip from "./PartnerStrip";
-import { RegisterButton, GhostLink } from "./ui";
+import { RegisterButton } from "./ui";
 
 declare global { interface Window { YT?: any; onYouTubeIframeAPIReady?: () => void } }
 
@@ -130,13 +130,12 @@ export default function Hero() {
           </h1>
 
           <p className="rise max-w-[560px] mt-10 max-[560px]:mt-6 mb-0 text-fg-mid text-[17px] max-[560px]:text-base leading-[1.62]" style={{ animationDelay: ".62s" }}>
-            AIB stands to identify, nurture, and facilitate school students from classes 9th till 12th in
+            IAIB stands to identify, nurture, and facilitate school students from classes 9th till 12th in
             learning about AI. They will get to learn AI, test their knowledge, and build solutions.
           </p>
 
           <div className="rise flex flex-wrap gap-3 mt-8 justify-start max-[560px]:grid max-[560px]:[&>*]:justify-center" style={{ animationDelay: ".74s" }}>
             <RegisterButton lg notch>Register now</RegisterButton>
-            <GhostLink href="#curriculum" lg notch>Explore the curriculum</GhostLink>
           </div>
 
           <div className="rise grid grid-cols-2 gap-[14px] max-[430px]:gap-[10px] mt-[34px] max-w-[520px]"

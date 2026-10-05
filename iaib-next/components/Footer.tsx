@@ -11,55 +11,55 @@ const SOCIALS: { label: string; href: string; path: string }[] = [
     path: "M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3z" },
 ];
 
+function Socials() {
+  return (
+    <div className="flex gap-[10px]">
+      {SOCIALS.map((s) => {
+        const icon = (
+          <svg viewBox="0 0 24 24" className="w-[17px] h-[17px]" fill="currentColor" aria-hidden>
+            <path d={s.path} />
+          </svg>
+        );
+        const cls = "notch cap-n grid place-items-center w-10 h-10 bg-white/[0.06] text-fg-mid " +
+                    "hover:bg-accent hover:text-white transition-colors";
+        return s.href
+          ? <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label} className={cls}>{icon}</a>
+          : <span key={s.label} aria-label={s.label} title={s.label} className={cls}>{icon}</span>;
+      })}
+    </div>
+  );
+}
+
+/* Brand, tagline and socials top-left, the legal line under them, and a giant
+   faded BUILDATHON wordmark that fills the width and runs off the bottom edge.
+   The right-hand side is left empty on purpose. */
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line">
-      <div className="wrap relative grid grid-cols-[1fr_auto] gap-12 items-center pt-[72px] pb-10
-                      max-[980px]:grid-cols-1 max-[980px]:gap-8 max-[560px]:pt-14">
-        {/* on narrow screens the column dissolves so the illustration can sit
-            between the heading and the links */}
-        <div className="flex flex-col h-full max-[980px]:contents">
-          <h2 className="font-display font-bold text-white m-0 uppercase leading-[0.98] tracking-[-0.03em]
-                         text-[clamp(2.6rem,6vw,4.6rem)] max-[980px]:order-1">
-            Ignite AI<br /><span className="text-accent">Buildathon</span>
-          </h2>
+      <div className="wrap relative pt-[72px] max-[560px]:pt-14">
+        <a href="#top" className="inline-block" aria-label="Back to top">
+          <img src="/assets/brand.png" width={692} height={96} alt="upGrad School of Technology — Ignite AI Buildathon"
+               className="h-[34px] max-[560px]:h-[28px] w-auto block" />
+        </a>
+        <p className="m-0 mt-5 text-[16px] text-fg-mid">India&rsquo;s AI buildathon for school students</p>
+        <div className="mt-7"><Socials /></div>
 
-          <div className="flex items-center gap-4 mt-9 max-[980px]:mt-0 max-[980px]:order-3 max-[400px]:flex-wrap max-[400px]:gap-3">
-            <span className="text-[15px] text-fg-mid">Follow us on</span>
-            <div className="flex gap-[10px]">
-              {SOCIALS.map((s) => {
-                const icon = (
-                  <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="currentColor" aria-hidden>
-                    <path d={s.path} />
-                  </svg>
-                );
-                const cls = "notch cap-n grid place-items-center w-10 h-10 bg-white/[0.08] text-fg " +
-                            "hover:bg-white hover:text-black transition-colors";
-                return s.href
-                  ? <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label} className={cls}>{icon}</a>
-                  : <span key={s.label} aria-label={s.label} title={s.label} className={cls}>{icon}</span>;
-              })}
-            </div>
-          </div>
-
-          <div className="mt-auto pt-16 max-[980px]:pt-0 max-[980px]:order-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] text-fg-mid">
-            <span className="cursor-default">Privacy Policy</span>
-            <span className="w-px h-4 bg-line-2" />
-            <span className="cursor-default">Terms &amp; Conditions</span>
-          </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-16 max-[560px]:mt-12 text-[14px] text-fg-dim">
+          <span>© 2026 Ignite AI Buildathon. All rights reserved.</span>
+          <span className="flex items-center gap-4">
+            <span className="cursor-default hover:text-white transition-colors">Privacy Policy</span>
+            <span className="w-px h-3 bg-line-2" />
+            <span className="cursor-default hover:text-white transition-colors">Terms &amp; Conditions</span>
+          </span>
         </div>
 
-        {/* the illustration has a transparent ground and black line work, which
-            would vanish on black; stacked white drop-shadows give it a sticker
-            outline instead */}
-        <img src="/assets/footer-buildathon.png" width={635} height={349} alt=""
-             className="footer-art w-[min(560px,100%)] h-auto block max-[980px]:justify-self-center max-[980px]:order-2" />
-      </div>
-
-      <div className="wrap relative">
-        <div className="flex flex-wrap gap-3 justify-between items-center py-6 border-t border-line text-[12.5px] text-fg-dim">
-          <span>© 2026 Ignite AI Buildathon · An upGrad initiative</span>
-        </div>
+        {/* the wordmark: sized to the wrap's width, fading out as it drops off the edge */}
+        <p aria-hidden className="m-0 mt-20 max-[560px]:mt-12 -mb-[0.2em] select-none pointer-events-none whitespace-nowrap
+                                  font-display font-bold uppercase leading-[0.8] tracking-[-0.045em]
+                                  text-[calc((100vw-2*var(--gut))*0.17)] text-transparent bg-clip-text
+                                  bg-linear-to-b from-white/[0.16] to-white/[0.02]">
+          Buildathon
+        </p>
       </div>
     </footer>
   );

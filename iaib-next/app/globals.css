@@ -414,11 +414,6 @@ html.bot-cursor .botfield { display: none }
 .notch.num-n { --n: 4px }
 .botcur .botsay { bottom: calc(100% + 22px); transition: opacity .2s, visibility 0s linear .2s }
 .botcur.watch .botsay { opacity: 1; visibility: visible; transition: opacity .2s, visibility 0s }
-.footer-art {
-  filter:
-    drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff)
-    drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff);
-}
 
 
 /* the university-partner strip: edges fade out, the track slides one half */
@@ -439,3 +434,4 @@ html.bot-cursor .botfield { display: none }
 }
 [data-reveal].rv-in { opacity: 1; transform: none }
 [data-reveal].rv-now { transition: none }
+

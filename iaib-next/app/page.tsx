@@ -61,7 +61,7 @@ export default function Page() {
         <section id="mentors" className="border-b border-line">
           <div className="wrap pt-[88px] pb-[88px]">
             <SecHead>
-              <H2>Meet Your <Hl>Mentors</Hl></H2>
+              <H2>Industry <Hl>Bigwigs</Hl></H2>
               {/* a longer sentence than the other intros, and this section is
                   full-bleed, so it can carry a wider measure and hold two lines */}
               <Sub className="max-w-[78ch] max-[1180px]:max-w-[62ch]">

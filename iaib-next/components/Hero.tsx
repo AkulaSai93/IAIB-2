@@ -134,20 +134,21 @@ export default function Hero() {
             learning about AI. They will get to learn AI, test their knowledge, and build solutions.
           </p>
 
-          <div className="rise flex flex-wrap gap-3 mt-8 justify-start max-[560px]:grid max-[560px]:[&>*]:justify-center" style={{ animationDelay: ".74s" }}>
-            <RegisterButton lg notch>Register now</RegisterButton>
-          </div>
-
-          <div className="rise grid grid-cols-2 gap-[14px] max-[430px]:gap-[10px] mt-[34px] max-w-[520px]"
-               style={{ animationDelay: ".86s" }}>
+          <div className="rise grid grid-cols-2 gap-[14px] max-[430px]:gap-[10px] mt-9 max-[560px]:mt-7 max-w-[520px]"
+               style={{ animationDelay: ".74s" }}>
             <Prize label="Scholarship worth" amount="₹2" unit="Crore" star />
             <Prize label="Win prizes up to" amount="₹20" unit="Lakhs" />
           </div>
 
-          <p className="rise m-0 mt-9 font-body text-[13px] tracking-[0.1em] uppercase text-fg"
-             style={{ animationDelay: "1.02s" }}>
+          <p className="rise m-0 mt-7 font-body text-[13px] tracking-[0.1em] uppercase text-fg"
+             style={{ animationDelay: ".8s" }}>
             October 8th, 2026 <i className="not-italic text-fg-dim mx-[0.55em]">|</i> Bengaluru
           </p>
+
+          <div className="rise flex flex-wrap gap-3 mt-8 justify-start max-[560px]:grid max-[560px]:[&>*]:justify-center" style={{ animationDelay: ".92s" }}>
+            <RegisterButton lg notch>Register now</RegisterButton>
+          </div>
+
         </div>
 
         {/* on narrow screens the partner strip sits between the copy and the clip;

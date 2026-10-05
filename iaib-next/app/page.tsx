@@ -23,7 +23,7 @@ export default function Page() {
           <Sec>
             <SecHead>
               <H2>Why <Hl>IAIB?</Hl></H2>
-              <Sub>
+              <Sub className="!max-w-[86ch]">
                 AI is no longer the future, it&rsquo;s the skill shaping the present. IAIB makes AI literacy a
                 norm for students from Classes 9&ndash;12 through hands-on learning and real-world problem solving.
               </Sub>

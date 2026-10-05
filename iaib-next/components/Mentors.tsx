@@ -23,7 +23,7 @@ function Card({ dup }: { dup?: boolean }) {
                          [text-shadow:0_2px_14px_rgba(0,0,0,.6)]">
             {MENTOR.name}
           </h3>
-          <p className="mt-[10px] mb-0 font-mono text-xs tracking-[0.05em] text-[#c4c4c4]
+          <p className="mt-[10px] mb-0 font-body text-[13px] text-[#c4c4c4]
                         [text-shadow:0_1px_10px_rgba(0,0,0,.7)]">
             {MENTOR.role}
           </p>

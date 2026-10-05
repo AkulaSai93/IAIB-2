@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { YT_ID } from "@/lib/data";
 import { useLightbox } from "./Lightbox";
 import PixelBot from "./PixelBot";
+import PartnerStrip from "./PartnerStrip";
 import { RegisterButton, GhostLink } from "./ui";
 
 declare global { interface Window { YT?: any; onYouTubeIframeAPIReady?: () => void } }
@@ -67,10 +68,10 @@ function Prize({ label, amount, unit, star }: { label: string; amount: string; u
     <div className="notch relative overflow-hidden px-[18px] pt-4 pb-[15px] max-[430px]:px-[14px] max-[430px]:pt-3 max-[430px]:pb-3
                     bg-linear-170 from-white/[0.07] via-white/[0.02] to-transparent">
       <span className="p-rail" aria-hidden />
-      <span className="block font-mono text-[11px] max-[430px]:text-[9.5px] tracking-[0.14em] max-[430px]:tracking-[0.08em] uppercase text-fg-dim">{label}</span>
+      <span className="block font-body text-[11.5px] max-[430px]:text-[10px] tracking-[0.14em] max-[430px]:tracking-[0.08em] uppercase text-fg-dim">{label}</span>
       <span className="flex items-baseline gap-[7px] mt-[9px] font-mono tabular-nums whitespace-nowrap">
         <b className="font-medium text-[clamp(1.5rem,2.5vw,2.05rem)] leading-none tracking-[-0.02em] text-white">{amount}</b>
-        <em className="not-italic text-[12.5px] tracking-[0.06em] uppercase text-fg-mid">{unit}</em>
+        <em className="not-italic font-body text-[12.5px] tracking-[0.06em] uppercase text-fg-mid">{unit}</em>
         {star && <sup className="text-[11px] text-accent -top-[0.7em]">*</sup>}
       </span>
     </div>
@@ -94,9 +95,9 @@ export default function Hero() {
 
       <PixelBot stageRef={stage} />
 
-      <div className="wrap relative grid items-center gap-12 min-[1021px]:grid-cols-[minmax(0,1fr)_minmax(0,0.86fr)]
+      <div className="wrap relative grid items-center gap-12 max-[1020px]:gap-0 min-[1021px]:grid-cols-[minmax(0,1fr)_minmax(0,0.86fr)]
                       min-[1021px]:min-h-[min(840px,calc(100svh-57px))]">
-        <div className="relative z-[1] text-left pt-[72px] pb-12 min-[1021px]:pt-[72px] min-[1021px]:pb-12">
+        <div className="relative z-[1] text-left pt-[72px] pb-12 max-[1020px]:pb-9 min-[1021px]:pt-[72px] min-[1021px]:pb-12">
           <div className="rise flex items-center justify-start gap-4 m-0" style={{ animationDelay: ".14s" }}>
             {/* lifted off its near-white plate by flood-filling inward from the
                 border: the bird, the scroll and the motto inside the shield are
@@ -104,19 +105,20 @@ export default function Hero() {
             <img src="/assets/karnataka-emblem.png" width={154} height={140} alt="" aria-hidden
                  className="w-[78px] max-[560px]:w-[60px] h-auto block flex-none" />
             <p className="grid gap-[2px] text-left m-0">
-              <span className="font-mono text-[11px] tracking-[0.13em] uppercase text-fg-dim">Supported by</span>
+              <span className="font-body text-[11.5px] tracking-[0.12em] uppercase text-fg-dim">Supported by</span>
               <span className="font-display font-bold text-[19px] max-[560px]:text-base leading-[1.15] tracking-[-0.02em] text-[#fafafa]">
                 Government of Karnataka
               </span>
             </p>
           </div>
 
-          <h1 className="font-h1 font-bold text-white m-0 mt-[26px] whitespace-nowrap
-                         text-[clamp(1.75rem,4.8vw,4.3rem)] leading-[1.06] tracking-[-0.035em]">
+          <h1 className="font-h1 font-bold text-white m-0 mt-[26px] max-[560px]:mt-6 whitespace-nowrap max-[560px]:whitespace-normal
+                         text-[clamp(1.75rem,4.8vw,4.3rem)] max-[560px]:text-[clamp(2.6rem,13vw,3.4rem)] leading-[1.06] max-[560px]:leading-[1.08] tracking-[-0.035em]">
             <span className="line block">
               <span className="line-in block">
                 Ignite AI{" "}
-                <span className="sel">
+                <br className="min-[561px]:hidden" />
+                <span className="sel max-[560px]:inline-block max-[560px]:mt-1">
                   <span className="text-accent" style={{ WebkitTextFillColor: "var(--color-accent)" }}>Buildathon</span>
                   <i className="hd hd-tl" /><i className="hd hd-tr" /><i className="hd hd-bl" /><i className="hd hd-br" />
                   <svg className="sel-cursor" viewBox="0 0 20 22" fill="currentColor" aria-hidden>
@@ -127,7 +129,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="rise max-w-[560px] mt-10 mb-0 text-fg-mid text-[17px] leading-[1.62]" style={{ animationDelay: ".62s" }}>
+          <p className="rise max-w-[560px] mt-10 max-[560px]:mt-6 mb-0 text-fg-mid text-[17px] max-[560px]:text-base leading-[1.62]" style={{ animationDelay: ".62s" }}>
             AIB stands to identify, nurture, and facilitate school students from classes 9th till 12th in
             learning about AI. They will get to learn AI, test their knowledge, and build solutions.
           </p>
@@ -143,12 +145,15 @@ export default function Hero() {
             <Prize label="Win prizes up to" amount="₹20" unit="Lakhs" />
           </div>
 
-          <p className="rise m-0 mt-9 font-mono text-[12.5px] tracking-[0.1em] uppercase text-fg"
+          <p className="rise m-0 mt-9 font-body text-[13px] tracking-[0.1em] uppercase text-fg"
              style={{ animationDelay: "1.02s" }}>
             October 8th, 2026 <i className="not-italic text-fg-dim mx-[0.55em]">|</i> Bengaluru
           </p>
         </div>
 
+        {/* on narrow screens the partner strip sits between the copy and the clip;
+            on wide ones it runs under the whole hero instead (see page.tsx) */}
+        <PartnerStrip className="min-[1021px]:hidden mx-[calc(var(--gut)*-1)] border-t" />
         <HeroVideo />
       </div>
     </section>

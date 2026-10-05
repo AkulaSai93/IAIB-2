@@ -20,6 +20,33 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const menu = useRef<HTMLDivElement>(null);
 
+  /* In-page links (#why, #how …) scroll in script rather than by the browser's
+     native smooth scroll, which an autoplaying embed or late layout can cut
+     short. It lands the section just under the sticky bar, then checks where
+     it actually ended up and snaps the rest of the way if anything stopped it. */
+  useEffect(() => {
+    const offset = () => (document.querySelector("header")?.getBoundingClientRect().height ?? 64) + 12;
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!a) return;
+      const id = a.getAttribute("href")!.slice(1);
+      const el = id === "top" ? document.body : document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      setOpen(false);
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const target = () => id === "top" ? 0 : Math.max(0, el.getBoundingClientRect().top + window.scrollY - offset());
+      window.scrollTo({ top: target(), behavior: reduce ? "auto" : "smooth" });
+      history.pushState(null, "", `#${id}`);
+      window.setTimeout(() => {
+        if (Math.abs(window.scrollY - target()) > 4) window.scrollTo({ top: target(), behavior: "auto" });
+      }, 1100);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   /* close on outside click and on Escape — a menu that only closes by its own
      button is a trap on a phone */
   useEffect(() => {
@@ -38,12 +65,13 @@ export default function Nav() {
 
   return (
     <header className="sticky top-[env(safe-area-inset-top,0px)] z-50 bg-black/[0.72] backdrop-blur-[14px] border-b border-line">
-      <div className="wrap flex items-center gap-7 max-[560px]:gap-3 h-16 max-[560px]:h-14">
+      <div className="wrap relative flex items-center gap-7 max-[560px]:gap-3 h-16 max-[560px]:h-14">
         <Brand />
-        <nav className="hidden min-[881px]:flex gap-6 ml-2">
+        {/* centred on the bar itself, not in the space left between logo and CTA */}
+        <nav className="hidden min-[1021px]:flex gap-7 absolute left-1/2 -translate-x-1/2">
           {NAV.map((n) => (
             <a key={n.href} href={n.href}
-               className="font-mono text-[11.5px] tracking-[0.09em] uppercase text-fg-mid hover:text-fg transition-colors">
+               className="font-body text-[12px] tracking-[0.08em] uppercase text-fg-mid hover:text-fg transition-colors">
               {n.label}
             </a>
           ))}
@@ -54,7 +82,7 @@ export default function Nav() {
             Register now
           </button>
 
-          <div className="relative min-[881px]:hidden" ref={menu}>
+          <div className="relative min-[1021px]:hidden" ref={menu}>
             <button
               type="button"
               aria-expanded={open}

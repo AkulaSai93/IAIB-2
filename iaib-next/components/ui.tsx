@@ -42,11 +42,11 @@ const BTN =
   "text-[13px] tracking-[-0.01em] px-[18px] py-[9px] leading-[1.5] " +
   "whitespace-nowrap transition-colors duration-150 cursor-pointer";
 
-const PRIMARY = "bg-white text-black hover:bg-[#e4e4e4]";
+const PRIMARY = "bg-white text-black hover:bg-accent hover:text-white";
 
 /* A clip-path cuts a 1px border into open ends at every step, so the
    secondary CTA carries a filled surface instead of an outline. */
-const GHOST = "bg-white/[0.08] text-fg hover:bg-white/[0.16]";
+const GHOST = "bg-white/[0.08] text-fg hover:bg-accent hover:text-white";
 
 const LG = "cta-lg text-[15px] px-[26px] py-[13px]";
 

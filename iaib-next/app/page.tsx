@@ -1,14 +1,14 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import CodeTabs from "@/components/CodeTabs";
 import Steps from "@/components/Steps";
 import Curriculum from "@/components/Curriculum";
 import Mentors from "@/components/Mentors";
 import Faq from "@/components/Faq";
+import Rewards from "@/components/Rewards";
+import PartnerStrip from "@/components/PartnerStrip";
 import Footer from "@/components/Footer";
 import { LightboxProvider } from "@/components/Lightbox";
-import { H2, Hl, Sub, SecHead, Sec, GhostLink, RegisterButton } from "@/components/ui";
-import { REWARDS } from "@/lib/data";
+import { H2, Hl, Sub, SecHead, Sec, RegisterButton } from "@/components/ui";
 
 export default function Page() {
   return (
@@ -16,28 +16,10 @@ export default function Page() {
       <Nav />
       <main>
         <Hero />
-
-        {/* ---- why ---- */}
-        <section id="why" className="border-b border-line">
-          <Sec>
-            <div className="grid grid-cols-[1fr_1.15fr] gap-14 items-center max-[860px]:grid-cols-1 max-[860px]:gap-[34px]">
-              <div>
-                <H2>Start building<br /><Hl>this weekend</Hl></H2>
-                <Sub>
-                  No prior coding. Sessions begin at zero and end with you running real code.
-                  A model, a prompt, a tool call, and something on screen that works.
-                </Sub>
-                <div className="flex flex-wrap gap-3 mt-8">
-                  <GhostLink href="#curriculum">See all 30 sessions</GhostLink>
-                </div>
-              </div>
-              <CodeTabs />
-            </div>
-          </Sec>
-        </section>
+        <PartnerStrip className="max-[1020px]:hidden" />
 
         {/* ---- rewards ---- */}
-        <section className="border-b border-line">
+        <section id="why" className="border-b border-line">
           <Sec>
             <SecHead>
               <H2>Why <Hl>IAIB?</Hl></H2>
@@ -46,24 +28,7 @@ export default function Page() {
                 norm for students from Classes 9&ndash;12 through hands-on learning and real-world problem solving.
               </Sub>
             </SecHead>
-            {/* gap:1px over a line-coloured ground, so the rules never double up
-                where two cells meet */}
-            <div className="notch grid grid-cols-3 gap-px bg-line overflow-hidden max-[860px]:grid-cols-2 max-[560px]:grid-cols-1">
-              {REWARDS.map((r) => (
-                <div key={r.ico}
-                  className={`px-[26px] py-[30px] max-[560px]:px-5 max-[560px]:py-6 min-w-0 transition-[background] duration-200 bg-surface
-                              bg-linear-to-b from-white/[0.02] to-transparent
-                              hover:bg-surface-2 hover:from-white/[0.06]
-                              ${r.span2 ? "col-span-2 max-[560px]:col-span-1" : ""}`}>
-                  <div className="font-mono text-[11px] tracking-[0.09em] uppercase text-fg-dim">{r.ico}</div>
-                  <div className="font-mono font-medium text-[2.1rem] max-[560px]:text-[1.75rem] leading-none tracking-[-0.02em] tabular-nums text-white mt-[14px] mb-2">
-                    {r.big}
-                    {r.note && <small className="text-[0.95rem] text-fg-mid font-mono tracking-normal">{r.note}</small>}
-                  </div>
-                  <p className="m-0 text-fg-mid text-sm">{r.body}</p>
-                </div>
-              ))}
-            </div>
+            <Rewards />
           </Sec>
         </section>
 
@@ -75,6 +40,9 @@ export default function Page() {
               <Sub>Just a quick 4-step process and you&rsquo;re in.</Sub>
             </SecHead>
             <Steps />
+            <div className="flex justify-center mt-12 max-[560px]:mt-9 max-[560px]:[&>*]:w-full max-[560px]:[&>*]:justify-center">
+              <RegisterButton lg>Register now</RegisterButton>
+            </div>
           </Sec>
         </section>
 

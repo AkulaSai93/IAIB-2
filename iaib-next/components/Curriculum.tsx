@@ -24,8 +24,8 @@ function Lights() {
 function FileIcon({ on }: { on: boolean }) {
   return (
     <svg viewBox="0 0 16 16" className="w-[15px] h-[15px] flex-none" aria-hidden>
-      <path d="M3.5 1.5h6l3 3v10h-9z" fill={on ? "#f0402f" : "#3a3a3c"} />
-      <path d="M9.5 1.5v3h3" fill="none" stroke={on ? "#ffb3aa" : "#5a5a5e"} />
+      <path d="M3.5 1.5h6l3 3v10h-9z" fill={on ? "#f0402f" : "#333333"} />
+      <path d="M9.5 1.5v3h3" fill="none" stroke={on ? "#ffb3aa" : "#555555"} />
     </svg>
   );
 }
@@ -35,18 +35,18 @@ export default function Curriculum() {
   const m = MODULES[i];
 
   return (
-    <div className="notch win-n overflow-hidden bg-[#1c1c1e]">
+    <div className="notch win-n overflow-hidden bg-surface">
       {/* title bar */}
-      <div className="relative flex items-center h-12 px-4 bg-linear-to-b from-[#2c2c2e] to-[#232325] border-b border-black/60">
+      <div className="relative flex items-center h-12 px-4 bg-linear-to-b from-[#161616] to-surface-2 border-b border-line">
         <Lights />
-        <p className="absolute inset-x-0 text-center m-0 pointer-events-none font-mono text-[12px] text-fg-mid truncate px-24">
+        <p className="absolute inset-x-0 text-center m-0 pointer-events-none font-body text-[13px] text-fg-mid truncate px-24">
           Curriculum — {m.title}
         </p>
       </div>
 
       <div className="grid grid-cols-[230px_1fr] min-h-[620px] max-[800px]:min-h-0 max-[800px]:grid-cols-1">
         {/* Finder sidebar */}
-        <div className="bg-[#232325]/80 border-r border-black/50 p-3
+        <div className="bg-[#080808] border-r border-line p-3
                         max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:p-2">
           <p className="m-0 px-2 pt-1 pb-2 text-[11px] font-semibold text-fg-dim max-[800px]:hidden">
             Modules
@@ -58,9 +58,9 @@ export default function Curriculum() {
               <button
                 key={mod.file} role="tab" aria-selected={j === i} onClick={() => setI(j)}
                 className={`flex items-center gap-2 w-full max-[800px]:w-auto max-[800px]:whitespace-nowrap
-                            font-mono text-[12.5px] border-0 cursor-pointer notch cap-n px-3 py-[8px] text-left
+                            border-0 cursor-pointer notch cap-n px-3 py-[8px] text-left
                             transition-colors duration-100 ${
-                  j === i ? "bg-white/[0.12] text-white" : "bg-transparent text-fg-mid hover:bg-white/[0.05] hover:text-fg"
+                  j === i ? "bg-white/[0.08] text-white" : "bg-transparent text-fg-mid hover:bg-white/[0.05] hover:text-fg"
                 }`}
               >
                 <FileIcon on={j === i} />
@@ -72,12 +72,12 @@ export default function Curriculum() {
         </div>
 
         {/* editor pane */}
-        <div className="min-w-0 bg-[#141415] flex flex-col">
-          <div className="flex items-center gap-2 h-9 px-4 border-b border-black/50 bg-[#1a1a1b] max-[800px]:hidden">
-            <span className="flex items-center gap-2 font-mono text-[12px] text-fg">
+        <div className="min-w-0 bg-surface flex flex-col">
+          <div className="flex items-center gap-2 h-9 px-4 border-b border-line bg-surface-2 max-[800px]:hidden">
+            <span className="flex items-center gap-2 font-body text-[13px] text-fg">
               <FileIcon on /> Module {pad(i + 1)}
             </span>
-            <span className="ml-auto font-mono text-[11px] text-fg-dim">{m.n} sessions</span>
+            <span className="ml-auto font-body text-[12px] text-fg-dim">{m.n} sessions</span>
           </div>
 
           <div className="flex-1 px-9 py-8 max-[560px]:px-5 max-[560px]:py-6">
@@ -99,8 +99,8 @@ export default function Curriculum() {
           </div>
 
           {/* status bar */}
-          <div className="flex items-center gap-4 h-7 px-4 border-t border-black/50 bg-[#1a1a1b]
-                          font-mono text-[11px] text-fg-dim">
+          <div className="flex items-center gap-4 h-7 px-4 border-t border-line bg-surface-2
+                          font-body text-[12px] text-fg-dim">
             <span className="ml-auto">{TOTAL} sessions in total</span>
           </div>
         </div>

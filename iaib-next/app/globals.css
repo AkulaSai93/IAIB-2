@@ -63,7 +63,11 @@ html { scrollbar-color: #2e2e2e #000; scrollbar-width: thin }
 ::-webkit-scrollbar-thumb:hover { background: #454545 }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 3px }
 
-img, svg, video { max-width: 100%; height: auto }
+/* in the base layer so Tailwind's h-* utilities can override it — unlayered,
+   this beat every utility and rendered the nav logo at its natural 96px */
+@layer base {
+  img, svg, video { max-width: 100%; height: auto }
+}
 
 /* ---------------------------------------------------------------------------
    The page's own devices. These are the things Tailwind cannot express without
@@ -84,6 +88,11 @@ img, svg, video { max-width: 100%; height: auto }
   );
 }
 @media (max-width: 560px) { .notch { --n: 11px } }
+
+/* CTAs reuse the notch at a step proportional to the button, about a seventh
+   of its height; the doubled selector outranks the .notch breakpoint above */
+.cta.notch { --n: 5px }
+.cta.cta-lg.notch { --n: 7px }
 
 .wrap { padding-inline: var(--gut) }
 
@@ -166,7 +175,15 @@ img, svg, video { max-width: 100%; height: auto }
   width:  calc(max(100cqw, 100cqh * 16 / 9) * var(--cover));
   height: calc(max(100cqh, 100cqw * 9 / 16) * var(--cover));
 }
-@media (max-width: 1020px) { .hero-vid, .botfield { display: none } }
+/* below the two-column layout the clip follows the copy, edge to edge, and
+   fades only top and bottom; the bot still walks onto it to say "click to watch" */
+@media (max-width: 1020px) {
+  .hero-vid {
+    min-height: 0; height: clamp(260px, 62vw, 460px); margin: -8px calc(var(--gut) * -1) 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 80%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 80%, transparent 100%);
+  }
+}
 
 /* ---- the pixel bot -------------------------------------------------------- */
 .botfield { position: absolute; inset: 0; z-index: 2; pointer-events: none }
@@ -361,6 +378,10 @@ pre .l { display: block; white-space: pre }
 pre .l::before { counter-increment: ln; content: counter(ln); display: inline-block;
   width: 2.2em; margin-right: 1.4em; text-align: right; color: #6a6a6a;
   user-select: none; font-variant-numeric: tabular-nums }
+@media (max-width: 560px) {
+  pre { padding: 16px 14px 18px; font-size: 11.5px; line-height: 1.75 }
+  pre .l::before { width: 1.6em; margin-right: 1em }
+}
 .k { color: #ff6b5e } .s { color: #8fb9d9 } .f { color: #c9a3f0 } .n { color: #79a8d9 }
 .c { color: #8a8a8a; font-style: italic } .p { color: #8a8a8a } .v { color: #d9d9d9 }
 
@@ -371,3 +392,32 @@ pre .l::before { counter-increment: ln; content: counter(ln); display: inline-bl
 }
 @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
 @keyframes lbin { from { opacity: 0; transform: translateY(12px) scale(.985) } to { opacity: 1; transform: none } }
+
+/* ---- the bot cursor (BotCursor.tsx) ---------------------------------------
+   Only once the script has confirmed a mouse does the native cursor go; the
+   hero's walking bot then stands down, since the cursor is the bot. */
+html.bot-cursor, html.bot-cursor * { cursor: none !important }
+html.bot-cursor .botfield { display: none }
+.botcur {
+  position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none;
+  opacity: 0; transition: opacity .15s; will-change: transform;
+}
+.botcur.on { opacity: 1 }
+.botcur .bot { animation: none; pointer-events: none }
+@media (prefers-reduced-motion: no-preference) {
+  .botcur.jump .bot { animation: hop-now 0.62s ease-out 1 }
+}
+
+
+/* footer social tiles: the notch at a small step */
+.notch.cap-n { --n: 6px }
+.notch.win-n { --n: 12px }
+.notch.num-n { --n: 4px }
+.botcur .botsay { bottom: calc(100% + 22px); transition: opacity .2s, visibility 0s linear .2s }
+.botcur.watch .botsay { opacity: 1; visibility: visible; transition: opacity .2s, visibility 0s }
+.footer-art {
+  filter:
+    drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff)
+    drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff);
+}
+

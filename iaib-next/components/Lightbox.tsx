@@ -68,7 +68,7 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
             <div className="relative aspect-video bg-black overflow-hidden">
               <iframe
                 className="absolute inset-0 w-full h-full border-0"
-                src={`https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
+                src={`https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&controls=0&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`}
                 allow="autoplay; encrypted-media; fullscreen"
                 allowFullScreen
                 title="Ignite AI Buildathon"

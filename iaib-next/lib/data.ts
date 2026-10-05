@@ -14,21 +14,21 @@ export const STATS = [
   { value: "9–12", label: "Classes" },
   { value: "30", label: "Live sessions" },
   { value: "₹2 Cr", label: "Scholarships" },
-  { value: "₹25 L", label: "Prizes" },
+  { value: "₹20 L", label: "Prizes" },
   { value: "36 hrs", label: "Grand finale" },
 ];
 
 export const REWARDS = [
   { ico: "Scholarship", big: "₹2 Cr", note: "",
-    body: "A pool of ₹2 crore for participants who join the upGrad School of Technology campus programme in next year’s cohort." },
-  { ico: "Prizes", big: "₹25 L", note: "",
-    body: "Prizes worth ₹25 lakhs, with a ₹20 lakh pool contested at the Bengaluru finale." },
+    body: "A ₹2 crore scholarship pool for participants who join the upGrad School of Technology campus programme next year." },
+  { ico: "Prizes", big: "₹20 L", note: "",
+    body: "Win from a ₹20 lakh prize pool, awarded to the top teams at the grand finale in Bengaluru." },
   { ico: "Investors", big: "Pitch", note: " to VCs",
-    body: "Finalists pitch what they built to a room of venture investors." },
-  { ico: "Record", big: "LOR", note: "",
-    body: "Letters of recommendation for standout builders." },
-  { ico: "Proof", big: "Certificates", note: "", span2: true,
-    body: "Certificates and goodies for everyone who completes the live sessions." },
+    body: "Finalists present what they built to a panel of venture capital investors." },
+  { ico: "Recognition", big: "LOR", note: "",
+    body: "Letters of recommendation for standout builders, to strengthen college and internship applications." },
+  { ico: "Certificate", big: "For all", note: "",
+    body: "Every student who completes the live sessions gets a certificate and IAIB goodies.", span2: true },
 ];
 
 /* Each mock is one idea, not four copies of one: two carry a cursor and a

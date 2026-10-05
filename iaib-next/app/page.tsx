@@ -8,7 +8,7 @@ import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import { LightboxProvider } from "@/components/Lightbox";
 import { H2, Hl, Sub, SecHead, Sec, GhostLink, RegisterButton } from "@/components/ui";
-import { REWARDS, SCHOOL_POINTS, STATS } from "@/lib/data";
+import { REWARDS } from "@/lib/data";
 
 export default function Page() {
   return (
@@ -36,23 +36,6 @@ export default function Page() {
           </Sec>
         </section>
 
-        {/* ---- stats ---- */}
-        <section className="border-b border-line">
-          <div className="wrap">
-            <div className="grid grid-cols-5 max-[820px]:grid-cols-2">
-              {STATS.map((s, i) => (
-                <div key={s.label}
-                  className={`px-5 py-[30px] text-center min-w-0 border-r border-line last:border-r-0
-                    max-[820px]:border-b max-[820px]:odd:border-r max-[820px]:even:border-r-0
-                    ${i === STATS.length - 1 ? "max-[820px]:col-span-2 max-[820px]:border-b-0 max-[820px]:border-r-0" : ""}`}>
-                  <b className="block font-mono font-medium text-[2rem] tracking-[-0.02em] tabular-nums text-white leading-none">{s.value}</b>
-                  <span className="block mt-[10px] font-mono text-[11.5px] tracking-[0.1em] uppercase text-fg-dim">{s.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ---- rewards ---- */}
         <section className="border-b border-line">
           <Sec>
@@ -68,12 +51,12 @@ export default function Page() {
             <div className="notch grid grid-cols-3 gap-px bg-line overflow-hidden max-[860px]:grid-cols-2 max-[560px]:grid-cols-1">
               {REWARDS.map((r) => (
                 <div key={r.ico}
-                  className={`px-[26px] py-[30px] min-w-0 transition-[background] duration-200 bg-surface
+                  className={`px-[26px] py-[30px] max-[560px]:px-5 max-[560px]:py-6 min-w-0 transition-[background] duration-200 bg-surface
                               bg-linear-to-b from-white/[0.02] to-transparent
                               hover:bg-surface-2 hover:from-white/[0.06]
                               ${r.span2 ? "col-span-2 max-[560px]:col-span-1" : ""}`}>
                   <div className="font-mono text-[11px] tracking-[0.09em] uppercase text-fg-dim">{r.ico}</div>
-                  <div className="font-mono font-medium text-[2.1rem] leading-none tracking-[-0.02em] tabular-nums text-white mt-[14px] mb-2">
+                  <div className="font-mono font-medium text-[2.1rem] max-[560px]:text-[1.75rem] leading-none tracking-[-0.02em] tabular-nums text-white mt-[14px] mb-2">
                     {r.big}
                     {r.note && <small className="text-[0.95rem] text-fg-mid font-mono tracking-normal">{r.note}</small>}
                   </div>
@@ -128,7 +111,7 @@ export default function Page() {
         {/* ---- schools ---- */}
         <section className="border-b border-line">
           <Sec>
-            <div className="grid grid-cols-[1fr_1.15fr] gap-14 items-center max-[860px]:grid-cols-1 max-[860px]:gap-[34px]">
+            <div className="grid grid-cols-[0.8fr_1.6fr] gap-10 items-center max-[1100px]:grid-cols-1 max-[860px]:gap-[34px]">
               <div>
                 <H2>Bring the <Hl>AI Buildathon<br />to your school</Hl></H2>
                 <Sub>
@@ -139,13 +122,9 @@ export default function Page() {
                   <RegisterButton>Register your school</RegisterButton>
                 </div>
               </div>
-              <div className="grid grid-cols-1 gap-px bg-line overflow-hidden">
-                {SCHOOL_POINTS.map((p) => (
-                  <div key={p} className="px-[26px] py-[30px] bg-surface bg-linear-to-b from-white/[0.02] to-transparent">
-                    <p className="m-0 text-[15px] text-[#e6e6e6]">{p}</p>
-                  </div>
-                ))}
-              </div>
+              <img src="/assets/school.webp" width={1672} height={941} loading="lazy"
+                   alt="A school surrounded by cards: learn AI, build projects, compete for ₹20 lakh, for schools"
+                   className="block w-full h-auto" />
             </div>
           </Sec>
         </section>
@@ -156,26 +135,6 @@ export default function Page() {
             <SecHead><H2>Frequently Asked <Hl>Questions</Hl></H2></SecHead>
             <Faq />
           </Sec>
-        </section>
-
-        {/* ---- cta ---- */}
-        <section className="relative overflow-hidden text-center py-[110px] border-b border-line">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden
-               style={{ background:
-                 "radial-gradient(ellipse 48% 70% at 50% 110%,rgba(240,64,47,.14),transparent 70%)," +
-                 "radial-gradient(ellipse 70% 60% at 50% 120%,rgba(255,255,255,.07),transparent 72%)" }} />
-          <div className="wrap relative">
-            <H2 className="text-[clamp(2.4rem,6.4vw,4.4rem)]">
-              Build something<br /><Hl>before you graduate</Hl>
-            </H2>
-            <Sub className="mx-auto text-center">
-              Free to enter. Thirty live sessions. One stage in Bengaluru on October 8, 2026.
-            </Sub>
-            <div className="flex flex-wrap gap-3 mt-8 justify-center">
-              <RegisterButton lg notch>Register Now</RegisterButton>
-              <GhostLink href="#curriculum" lg notch>Explore the curriculum</GhostLink>
-            </div>
-          </div>
         </section>
       </main>
       <Footer />

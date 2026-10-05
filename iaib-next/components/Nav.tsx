@@ -11,7 +11,7 @@ function Brand({ className = "" }: { className?: string }) {
           sub-lines do not read at nav scale and are not meant to — the mark is
           recognised, not parsed. */}
       <img src="/assets/brand.png" width={692} height={96} alt=""
-           className="h-[34px] max-[560px]:h-[26px] w-auto block" />
+           className="h-[26px] max-[560px]:h-[22px] w-auto block" />
     </a>
   );
 }
@@ -38,7 +38,7 @@ export default function Nav() {
 
   return (
     <header className="sticky top-[env(safe-area-inset-top,0px)] z-50 bg-black/[0.72] backdrop-blur-[14px] border-b border-line">
-      <div className="wrap flex items-center gap-7 h-16 max-[560px]:h-14">
+      <div className="wrap flex items-center gap-7 max-[560px]:gap-3 h-16 max-[560px]:h-14">
         <Brand />
         <nav className="hidden min-[881px]:flex gap-6 ml-2">
           {NAV.map((n) => (
@@ -49,9 +49,9 @@ export default function Nav() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-4">
-          <button type="button" className={`${btnClass({ primary: true })} max-[360px]:hidden`}>
-            Register Now
+        <div className="ml-auto flex items-center gap-4 max-[560px]:gap-2">
+          <button type="button" className={`${btnClass({ primary: true })} max-[560px]:text-[12px] max-[560px]:px-3 max-[560px]:py-[7px] max-[340px]:hidden`}>
+            Register now
           </button>
 
           <div className="relative min-[881px]:hidden" ref={menu}>

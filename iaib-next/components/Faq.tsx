@@ -1,9 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import { FAQS } from "@/lib/data";
+import { btnClass } from "./ui";
+
+/* the first eight cover what most people ask; the rest wait behind View more */
+const SHOWN = 8;
 
 export default function Faq() {
+  const [all, setAll] = useState(false);
+  const list = all ? FAQS : FAQS.slice(0, SHOWN);
   return (
+    <>
     <div className="border-t border-line">
-      {FAQS.map(([q, a], i) => (
+      {list.map(([q, a], i) => (
         <details key={q} open={i === 0} className="group border-b border-line">
           <summary
             className="list-none cursor-pointer pr-10 py-5 relative text-base text-[#e6e6e6]
@@ -21,5 +31,14 @@ export default function Faq() {
         </details>
       ))}
     </div>
+    {FAQS.length > SHOWN && (
+      <div className="mt-9 flex justify-center">
+        <button type="button" aria-expanded={all} onClick={() => setAll((v) => !v)}
+                className={btnClass({ lg: true })}>
+          {all ? "View less" : `View more (${FAQS.length - SHOWN})`}
+        </button>
+      </div>
+    )}
+    </>
   );
 }

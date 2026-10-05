@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import BotCursor from "@/components/BotCursor";
 
 /* next/font self-hosts these and emits the @font-face rules, so there is no
    render-blocking request to Google and no layout shift from a late swap.
@@ -41,7 +42,7 @@ export const viewport = { themeColor: "#000000", width: "device-width", initialS
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${bricolage.variable} ${jetbrains.variable}`}>
-      <body>{children}</body>
+      <body>{children}<BotCursor /></body>
     </html>
   );
 }

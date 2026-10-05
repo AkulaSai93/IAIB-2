@@ -64,10 +64,10 @@ function HeroVideo() {
 
 function Prize({ label, amount, unit, star }: { label: string; amount: string; unit: string; star?: boolean }) {
   return (
-    <div className="notch relative overflow-hidden px-[18px] pt-4 pb-[15px]
+    <div className="notch relative overflow-hidden px-[18px] pt-4 pb-[15px] max-[430px]:px-[14px] max-[430px]:pt-3 max-[430px]:pb-3
                     bg-linear-170 from-white/[0.07] via-white/[0.02] to-transparent">
       <span className="p-rail" aria-hidden />
-      <span className="block font-mono text-[11px] tracking-[0.14em] uppercase text-fg-dim">{label}</span>
+      <span className="block font-mono text-[11px] max-[430px]:text-[9.5px] tracking-[0.14em] max-[430px]:tracking-[0.08em] uppercase text-fg-dim">{label}</span>
       <span className="flex items-baseline gap-[7px] mt-[9px] font-mono tabular-nums whitespace-nowrap">
         <b className="font-medium text-[clamp(1.5rem,2.5vw,2.05rem)] leading-none tracking-[-0.02em] text-white">{amount}</b>
         <em className="not-italic text-[12.5px] tracking-[0.06em] uppercase text-fg-mid">{unit}</em>
@@ -132,12 +132,12 @@ export default function Hero() {
             learning about AI. They will get to learn AI, test their knowledge, and build solutions.
           </p>
 
-          <div className="rise flex flex-wrap gap-3 mt-8 justify-start" style={{ animationDelay: ".74s" }}>
-            <RegisterButton lg notch>Register Now</RegisterButton>
+          <div className="rise flex flex-wrap gap-3 mt-8 justify-start max-[560px]:grid max-[560px]:[&>*]:justify-center" style={{ animationDelay: ".74s" }}>
+            <RegisterButton lg notch>Register now</RegisterButton>
             <GhostLink href="#curriculum" lg notch>Explore the curriculum</GhostLink>
           </div>
 
-          <div className="rise grid grid-cols-2 max-[430px]:grid-cols-1 gap-[14px] max-[430px]:gap-[10px] mt-[34px] max-w-[520px]"
+          <div className="rise grid grid-cols-2 gap-[14px] max-[430px]:gap-[10px] mt-[34px] max-w-[520px]"
                style={{ animationDelay: ".86s" }}>
             <Prize label="Scholarship worth" amount="₹2" unit="Crore" star />
             <Prize label="Win prizes up to" amount="₹20" unit="Lakhs" />

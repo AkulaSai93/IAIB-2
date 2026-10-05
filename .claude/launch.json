@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "iaib-next",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "iaib-next", "run", "dev"],
+      "port": 3000
+    },
+    {
       "name": "iaib",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "4178"],

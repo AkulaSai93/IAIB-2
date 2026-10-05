@@ -35,48 +35,39 @@ export function SecHead({ children }: { children: ReactNode }) {
   return <div className="mb-11">{children}</div>;
 }
 
+/* Every CTA is a ticket stub: a stepped pixel corner, and sentence-case mono. The corner is the same clip-path as .notch, at a step sized
+   to the button (see .cta in globals.css). */
 const BTN =
-  "inline-flex items-center gap-2 font-mono text-[11.5px] tracking-[0.08em] uppercase " +
-  "font-medium px-[14px] py-[7px] rounded-[7px] border border-transparent " +
-  "leading-[1.6] whitespace-nowrap transition-[0.16s] cursor-pointer";
+  "cta notch inline-flex items-center gap-[0.55em] font-mono font-normal " +
+  "text-[13px] tracking-[-0.01em] px-[18px] py-[9px] leading-[1.5] " +
+  "whitespace-nowrap transition-colors duration-150 cursor-pointer";
 
-const PRIMARY =
-  "bg-linear-to-b from-white to-[#dcdcdc] text-black " +
-  "shadow-[0_1px_0_rgba(255,255,255,.5)_inset,0_6px_20px_-8px_rgba(255,255,255,.3)] " +
-  "hover:from-white hover:to-[#eee]";
+const PRIMARY = "bg-white text-black hover:bg-[#e4e4e4]";
 
-const GHOST =
-  "border-line-2 text-fg bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/[0.22]";
+/* A clip-path cuts a 1px border into open ends at every step, so the
+   secondary CTA carries a filled surface instead of an outline. */
+const GHOST = "bg-white/[0.08] text-fg hover:bg-white/[0.16]";
 
-const LG = "text-[12.5px] px-[22px] py-[13px] rounded-lg";
+const LG = "cta-lg text-[15px] px-[26px] py-[13px]";
 
-/* A notched ghost button cannot keep its border — a clip-path cuts a 1px border
-   into open ends at every step — so it carries a filled surface instead. */
-const GHOST_NOTCHED = "border-transparent bg-white/[0.06] hover:bg-white/[0.12]";
-
-export function btnClass(opts: { primary?: boolean; lg?: boolean; notch?: boolean } = {}) {
-  return [
-    BTN,
-    opts.primary ? PRIMARY : GHOST,
-    opts.lg ? LG : "",
-    opts.notch ? `notch ${opts.primary ? "" : GHOST_NOTCHED}` : "",
-  ].join(" ");
+export function btnClass(opts: { primary?: boolean; lg?: boolean } = {}) {
+  return [BTN, opts.primary ? PRIMARY : GHOST, opts.lg ? LG : ""].join(" ");
 }
 
 /* Register has no destination yet. A real <button> rather than a link to
    nowhere: it stays keyboard-focusable and is plainly a control awaiting a
    handler, rather than a link that silently does nothing. */
-export function RegisterButton({ children, lg, notch }: { children: ReactNode; lg?: boolean; notch?: boolean }) {
+export function RegisterButton({ children, lg }: { children: ReactNode; lg?: boolean; notch?: boolean }) {
   return (
-    <button type="button" className={btnClass({ primary: true, lg, notch })}>
+    <button type="button" className={btnClass({ primary: true, lg })}>
       {children}
     </button>
   );
 }
 
-export function GhostLink({ href, children, lg, notch }: { href: string; children: ReactNode; lg?: boolean; notch?: boolean }) {
+export function GhostLink({ href, children, lg }: { href: string; children: ReactNode; lg?: boolean; notch?: boolean }) {
   return (
-    <a href={href} className={btnClass({ lg, notch })}>
+    <a href={href} className={btnClass({ lg })}>
       {children}
     </a>
   );

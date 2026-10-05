@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NAV } from "@/lib/data";
 import { btnClass } from "./ui";
+import OpenRegister from "./register/RegisterButton";
 
 function Brand({ className = "" }: { className?: string }) {
   return (
@@ -78,9 +79,9 @@ export default function Nav() {
         </nav>
 
         <div className="ml-auto flex items-center gap-4 max-[560px]:gap-2">
-          <button type="button" className={`${btnClass({ primary: true })} max-[560px]:text-[12px] max-[560px]:px-3 max-[560px]:py-[7px] max-[340px]:hidden`}>
+          <OpenRegister className={`${btnClass({ primary: true })} max-[560px]:text-[12px] max-[560px]:px-3 max-[560px]:py-[7px] max-[340px]:hidden`}>
             Register now
-          </button>
+          </OpenRegister>
 
           <div className="relative min-[1021px]:hidden" ref={menu}>
             <button

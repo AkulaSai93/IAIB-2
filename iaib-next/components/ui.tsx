@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import OpenRegister from "./register/RegisterButton";
 
 /* The page's shared primitives, so a section never hand-rolls its own spacing
    or button shape. */
@@ -54,14 +55,13 @@ export function btnClass(opts: { primary?: boolean; lg?: boolean } = {}) {
   return [BTN, opts.primary ? PRIMARY : GHOST, opts.lg ? LG : ""].join(" ");
 }
 
-/* Register has no destination yet. A real <button> rather than a link to
-   nowhere: it stays keyboard-focusable and is plainly a control awaiting a
-   handler, rather than a link that silently does nothing. */
-export function RegisterButton({ children, lg }: { children: ReactNode; lg?: boolean; notch?: boolean }) {
+/* Every Register button opens the registration dialog (components/register);
+   `school` starts it on the school coordinator's form. */
+export function RegisterButton({ children, lg, school }: { children: ReactNode; lg?: boolean; notch?: boolean; school?: boolean }) {
   return (
-    <button type="button" className={btnClass({ primary: true, lg })}>
+    <OpenRegister className={btnClass({ primary: true, lg })} path={school ? "school" : "individual"}>
       {children}
-    </button>
+    </OpenRegister>
   );
 }
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import BotCursor from "@/components/BotCursor";
+import { RegisterProvider } from "@/components/register/RegisterFlow";
 import ScrollReveal from "@/components/ScrollReveal";
 
 /* next/font self-hosts these and emits the @font-face rules, so there is no
@@ -43,7 +44,7 @@ export const viewport = { themeColor: "#000000", width: "device-width", initialS
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${bricolage.variable} ${jetbrains.variable}`}>
-      <body>{children}<BotCursor /><ScrollReveal /></body>
+      <body><RegisterProvider>{children}</RegisterProvider><BotCursor /><ScrollReveal /></body>
     </html>
   );
 }

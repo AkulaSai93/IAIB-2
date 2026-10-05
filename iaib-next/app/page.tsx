@@ -87,7 +87,7 @@ export default function Page() {
                   build real-world projects and compete nationally for &#8377;20L+ in prizes.
                 </Sub>
                 <div className="flex flex-wrap gap-3 mt-8">
-                  <RegisterButton>Register your school</RegisterButton>
+                  <RegisterButton school>Register your school</RegisterButton>
                 </div>
               </div>
               <img src="/assets/school.webp" width={1672} height={941} loading="lazy"

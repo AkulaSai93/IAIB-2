@@ -435,3 +435,38 @@ html.bot-cursor .botfield { display: none }
 [data-reveal].rv-in { opacity: 1; transform: none }
 [data-reveal].rv-now { transition: none }
 
+
+/* ---- registration flow (components/register) ----------------------------
+   The flow came over from the first build; these tokens let its classes
+   (text-ink, bg-brand, font-ui, font-code) resolve to this site's palette. */
+@theme {
+  --color-ink: #f0f0f0;
+  --color-brand: #f0402f;
+  --font-ui: var(--font-h1);
+  --font-code: var(--font-mono);
+}
+@keyframes step-in { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+.step-in { animation: step-in .4s cubic-bezier(.22,.61,.36,1) both }
+@keyframes pop-in { 0% { transform: scale(.4); opacity: 0 } 70% { transform: scale(1.08); opacity: 1 } 100% { transform: scale(1) } }
+.pop-in { animation: pop-in .45s cubic-bezier(.2,.9,.3,1.4) both }
+@keyframes tick-draw { from { stroke-dashoffset: var(--len) } to { stroke-dashoffset: 0 } }
+.tick-draw { stroke-dasharray: var(--len); animation: tick-draw .4s .3s ease-out both }
+@keyframes ring-sweep { from { stroke-dashoffset: 0 } to { stroke-dashoffset: var(--circ) } }
+.ring-sweep { stroke-dasharray: var(--circ); animation: ring-sweep var(--dur, 5s) linear both }
+@keyframes flip-out { from { transform: rotateY(0); opacity: 1 } to { transform: rotateY(-90deg); opacity: 0 } }
+.flip-out { animation: flip-out .3s ease-in both }
+@keyframes flip-in { from { transform: rotateY(90deg); opacity: 0 } to { transform: rotateY(0); opacity: 1 } }
+.flip-in { animation: flip-in .44s cubic-bezier(.2,.8,.3,1) both }
+@media (prefers-reduced-motion: reduce) {
+  .step-in, .pop-in, .tick-draw, .ring-sweep, .flip-out, .flip-in { animation-duration: .01ms }
+}
+
+/* while the registration dialog is open the bot cursor steps aside and the
+   ordinary pointer returns (higher specificity beats the cursor:none rule) */
+html.bot-cursor.reg-open .botcur { display: none }
+html.bot-cursor.reg-open, html.bot-cursor.reg-open * { cursor: auto !important }
+html.bot-cursor.reg-open :is(button, a, select, label, [role="button"]) { cursor: pointer !important }
+html.bot-cursor.reg-open :is(input:not([readonly]), textarea) { cursor: text !important }
+/* form fields in the registration dialog show focus with their own underline
+   or border colour, so the page's red focus ring is dropped for them */
+[role="dialog"] :is(input, select, textarea):focus-visible { outline: none }

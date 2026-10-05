@@ -9,13 +9,16 @@ const SHOWN = 8;
 
 export default function Faq() {
   const [all, setAll] = useState(false);
+  /* one answer open at a time: opening a question closes the last one */
+  const [openQ, setOpenQ] = useState<string | null>(FAQS[0][0]);
   const list = all ? FAQS : FAQS.slice(0, SHOWN);
   return (
     <>
     <div className="border-t border-line">
-      {list.map(([q, a], i) => (
-        <details key={q} open={i === 0} className="group border-b border-line">
+      {list.map(([q, a]) => (
+        <details key={q} open={openQ === q} className="group border-b border-line">
           <summary
+            onClick={(e) => { e.preventDefault(); setOpenQ((cur) => (cur === q ? null : q)); }}
             className="list-none cursor-pointer pr-10 py-5 relative text-base text-[#e6e6e6]
                        hover:text-white transition-colors
                        [&::-webkit-details-marker]:hidden [&::marker]:content-['']
@@ -27,7 +30,7 @@ export default function Faq() {
           >
             {q}
           </summary>
-          <p className="mt-0 mb-[22px] text-fg-mid text-[15px] max-w-[68ch]">{a}</p>
+          <p className="mt-0 mb-[22px] text-fg-mid text-[15px] pr-10 max-[560px]:pr-0">{a}</p>
         </details>
       ))}
     </div>

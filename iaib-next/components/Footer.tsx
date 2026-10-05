@@ -41,7 +41,7 @@ export default function Footer() {
           <img src="/assets/brand.png" width={692} height={96} alt="upGrad School of Technology — Ignite AI Buildathon"
                className="h-[34px] max-[560px]:h-[28px] w-auto block" />
         </a>
-        <p className="m-0 mt-5 text-[16px] text-fg-mid">Ignite AI Buildathon</p>
+        <p className="m-0 mt-5 font-display font-bold text-white text-[clamp(1.6rem,2.6vw,2.25rem)] tracking-[-0.02em] leading-tight">Ignite AI Buildathon</p>
         <div className="mt-7"><Socials /></div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-16 max-[560px]:mt-12 text-[14px] text-fg-dim">

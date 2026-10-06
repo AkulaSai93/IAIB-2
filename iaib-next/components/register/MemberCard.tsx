@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const CARD_BG = "/assets/card/card-bg.png";
 const CARD_LOGO = "/assets/card/card-logo.png";
@@ -39,6 +40,7 @@ export default function MemberCard({
   name: string;
   onClose: () => void;
 }) {
+  const router = useRouter();
   const [code] = useState(() => makeCode(name));
   const [badge] = useState(() => badgeId());
   const [copied, setCopied] = useState(false);
@@ -281,10 +283,15 @@ export default function MemberCard({
 
         <button
           type="button"
-          onClick={onClose}
+          onClick={() => {
+            // a new registration starts a fresh LMS profile seeded from it
+            try { localStorage.removeItem("iaib.lms.v1"); localStorage.setItem("iaib.lms.access", "1"); sessionStorage.removeItem("iaib.lms.profileDismissed"); } catch {}
+            onClose();
+            router.push("/lms/overview");
+          }}
           className="notch cap-n mt-4 flex w-full items-center justify-center bg-white px-6 py-3 font-mono text-[15px] text-black transition-colors hover:bg-brand hover:text-white"
         >
-          Done
+          Enter your LMS &rarr;
         </button>
       </div>
     </div>

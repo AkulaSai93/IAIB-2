@@ -470,3 +470,116 @@ html.bot-cursor.reg-open :is(input:not([readonly]), textarea) { cursor: text !im
 /* form fields in the registration dialog show focus with their own underline
    or border colour, so the page's red focus ring is dropped for them */
 [role="dialog"] :is(input, select, textarea):focus-visible { outline: none }
+
+/* ============================================================================
+   STUDENT LMS (app/lms). Semantic tokens: components read only these, and a
+   theme (lib/lms/data THEMES, applied by lib/lms/store) rewrites them.
+   ========================================================================== */
+:root {
+  --lms-bg: #000;
+  --lms-surface: #0c0c0c;
+  --lms-elevated: #141414;
+  --lms-text: #f0f0f0;
+  --lms-text-2: #a3a3a3;
+  --lms-text-3: #6f6f6f;
+  --lms-accent: #f0402f;
+  --lms-accent-soft: rgba(240, 64, 47, .14);
+  --lms-border: rgba(255, 255, 255, .08);
+  --lms-border-2: rgba(255, 255, 255, .14);
+}
+@theme inline {
+  --color-l-bg: var(--lms-bg);
+  --color-l-surface: var(--lms-surface);
+  --color-l-elev: var(--lms-elevated);
+  --color-l-text: var(--lms-text);
+  --color-l-text2: var(--lms-text-2);
+  --color-l-text3: var(--lms-text-3);
+  --color-l-accent: var(--lms-accent);
+  --color-l-soft: var(--lms-accent-soft);
+  --color-l-line: var(--lms-border);
+  --color-l-line2: var(--lms-border-2);
+}
+
+.lms { background: var(--lms-bg); color: var(--lms-text); min-height: 100svh; transition: background .4s }
+.lms ::selection { background: var(--lms-accent-soft) }
+.lms :focus-visible { outline-color: var(--lms-accent) }
+
+/* page transition: each route fades up as it mounts */
+@keyframes lms-page { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+.lms-page { animation: lms-page .45s cubic-bezier(.2,.7,.2,1) both }
+
+/* floating "+2 XP" */
+@keyframes xp-float { 0% { opacity: 0; transform: translate(-50%, 6px) scale(.9) } 15% { opacity: 1; transform: translate(-50%, -6px) scale(1.05) }
+  100% { opacity: 0; transform: translate(-50%, -64px) scale(1) } }
+.xp-float { position: fixed; z-index: 400; pointer-events: none; animation: xp-float 1.35s cubic-bezier(.2,.7,.2,1) forwards;
+  font-family: var(--font-mono); font-weight: 500; font-size: 15px; padding: 4px 10px; color: #fff; background: var(--lms-accent) }
+.xp-float.neg { background: #2a2a2a; color: #ddd }
+
+/* progress bars grow in */
+@keyframes bar-in { from { transform: scaleX(0) } }
+.bar-in { transform-origin: left; animation: bar-in .9s cubic-bezier(.2,.7,.2,1) both }
+
+/* flame breathes */
+@keyframes flame { 0%, 100% { transform: scale(1) rotate(-2deg) } 50% { transform: scale(1.12) rotate(3deg) } }
+.flame { display: inline-block; transform-origin: 50% 90%; animation: flame 1.6s ease-in-out infinite }
+
+/* the mascot bobs while idle */
+@keyframes bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-4px) } }
+.bob { animation: bob 2.6s ease-in-out infinite }
+
+/* the roadmap's current node pulses */
+@keyframes node-pulse { 0% { box-shadow: 0 0 0 0 var(--lms-accent-soft) } 100% { box-shadow: 0 0 0 18px transparent } }
+.node-pulse { animation: node-pulse 1.8s ease-out infinite }
+@keyframes check-draw { from { stroke-dashoffset: 24 } to { stroke-dashoffset: 0 } }
+.check-draw { stroke-dasharray: 24; animation: check-draw .5s .2s ease-out both }
+
+/* correct answer: a burst of pixels */
+@keyframes burst { from { transform: translate(0, 0) scale(1); opacity: 1 } to { transform: translate(var(--dx), var(--dy)) scale(.4); opacity: 0 } }
+.burst i { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; background: var(--lms-accent); animation: burst .8s cubic-bezier(.2,.7,.2,1) forwards }
+
+/* skeleton shimmer */
+@keyframes shimmer { to { background-position: -200% 0 } }
+.skel { background: linear-gradient(90deg, var(--lms-surface) 25%, var(--lms-elevated) 50%, var(--lms-surface) 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite }
+
+/* product tour spotlight: a hole punched through a dark overlay */
+.tour-hole { position: fixed; z-index: 300; pointer-events: none; transition: all .45s cubic-bezier(.2,.7,.2,1);
+  box-shadow: 0 0 0 9999px rgba(0,0,0,.72), 0 0 0 2px var(--lms-accent), 0 0 30px 4px var(--lms-accent-soft) }
+
+@media (prefers-reduced-motion: reduce) {
+  .lms-page, .xp-float, .bar-in, .flame, .bob, .node-pulse, .check-draw, .burst i, .skel { animation: none }
+  .tour-hole { transition: none }
+}
+
+/* ---- LMS gamification ---------------------------------------------------- */
+/* game buttons sit on a ledge and press down into it */
+.game-btn { border-bottom: 4px solid var(--ledge); }
+.game-btn:active:not(:disabled) { transform: translateY(2px); border-bottom-width: 2px; margin-bottom: 2px }
+
+/* path nodes: round 3D buttons */
+.path-node { border-radius: 50%; box-shadow: 0 7px 0 var(--node-ledge, rgba(0,0,0,.6)); transition: transform .1s, box-shadow .1s }
+.path-node:active { transform: translateY(5px); box-shadow: 0 2px 0 var(--node-ledge, rgba(0,0,0,.6)) }
+@keyframes start-bob { 0%,100% { transform: translate(-50%, 0) } 50% { transform: translate(-50%, -6px) } }
+.start-bubble { animation: start-bob 1.4s ease-in-out infinite }
+.start-bubble::after { content: ""; position: absolute; left: 50%; top: 100%; translate: -50% 0; border: 7px solid transparent; border-top-color: currentColor }
+@keyframes ring-spin { to { transform: rotate(360deg) } }
+.ring-spin { animation: ring-spin 6s linear infinite }
+
+/* full-screen celebration */
+@keyframes jump { 0%, 100% { transform: translateY(0) scale(1) } 40% { transform: translateY(-26px) scale(1.04) } 60% { transform: translateY(0) scale(.98, 1.02) } }
+.jump { animation: jump .9s cubic-bezier(.3,.7,.3,1) 3 }
+@keyframes confetti { 0% { transform: translate3d(0,-10vh,0) rotate(0) } 100% { transform: translate3d(var(--x), 105vh, 0) rotate(var(--r)) } }
+.confetti i { position: absolute; top: 0; width: 9px; height: 14px; animation: confetti var(--d) linear forwards }
+@keyframes tile-in { from { opacity: 0; transform: translateY(16px) scale(.95) } to { opacity: 1; transform: none } }
+.tile-in { animation: tile-in .45s cubic-bezier(.2,.8,.3,1.2) both }
+
+/* answer feedback bar slides up from the bottom of its container */
+@keyframes bar-up { from { transform: translateY(100%); opacity: 0 } to { transform: none; opacity: 1 } }
+.bar-up { animation: bar-up .32s cubic-bezier(.2,.8,.3,1) both }
+@media (prefers-reduced-motion: reduce) {
+  .start-bubble, .ring-spin, .jump, .confetti i, .tile-in, .bar-up { animation: none }
+}
+
+/* Byte stepping along the Learn path */
+@keyframes byte-walk { 0%, 100% { transform: translateY(0) rotate(-4deg) } 25% { transform: translateY(-5px) rotate(0) } 50% { transform: translateY(0) rotate(4deg) } 75% { transform: translateY(-5px) rotate(0) } }
+.byte-walk { animation: byte-walk .32s linear infinite }
+@media (prefers-reduced-motion: reduce) { .byte-walk { animation: none } }

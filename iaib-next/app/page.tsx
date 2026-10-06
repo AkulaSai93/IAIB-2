@@ -4,6 +4,8 @@ import Steps from "@/components/Steps";
 import Curriculum from "@/components/Curriculum";
 import Mentors from "@/components/Mentors";
 import Faq from "@/components/Faq";
+import BotCursor from "@/components/BotCursor";
+import ScrollReveal from "@/components/ScrollReveal";
 import Rewards from "@/components/Rewards";
 import PartnerStrip from "@/components/PartnerStrip";
 import Footer from "@/components/Footer";
@@ -106,6 +108,9 @@ export default function Page() {
         </section>
       </main>
       <Footer />
+      {/* marketing-page only: the bot cursor and the scroll reveals stay out of the LMS */}
+      <BotCursor />
+      <ScrollReveal />
     </LightboxProvider>
   );
 }

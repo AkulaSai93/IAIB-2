@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 
+import { usePathname } from "next/navigation";
 import RegistrationSuccess from "./RegistrationSuccess";
 import SchoolForm from "./SchoolForm";
 import { loadStudent, saveStudent } from "@/lib/student-store";
@@ -185,7 +186,17 @@ export function RegisterProvider({ children }: { children: React.ReactNode }) {
     setStartPath(path);
     setOpen(true);
   }, []);
+  const pathname = usePathname();
   const value = useMemo(() => ({ open }), [open]);
+
+  // the LMS sends unregistered visitors to /?register=1: open the flow for them
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (q.get("register")) {
+      open(q.get("register") === "school" ? "school" : "individual");
+      history.replaceState(null, "", window.location.pathname);
+    }
+  }, [open, pathname]);
 
   return (
     <RegisterCtx.Provider value={value}>

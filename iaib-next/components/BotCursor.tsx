@@ -41,8 +41,9 @@ export default function BotCursor() {
       c.classList.toggle("watch", !!(e.target as Element | null)?.closest?.(".hero-vid"));
     };
     const leave = () => c.classList.remove("on");
+    // a click is a quick hop on the spot: up a little, squash on landing
     const down = () => {
-      c.classList.remove("jump"); void c.offsetWidth; c.classList.add("jump");
+      c.classList.remove("cur-jump"); void c.offsetWidth; c.classList.add("cur-jump");
     };
     window.addEventListener("pointermove", move);
     window.addEventListener("pointerdown", down);

@@ -109,7 +109,7 @@ function RewardRoad() {
           const isNext = t === next;
           return (
             <div key={t.xp} className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${(i + 1) * seg}%` }}>
-              <span className={`path-node !rounded-none grid place-items-center w-14 h-14 ${isNext ? "jump" : ""}`}
+              <span className={`path-node !rounded-none grid place-items-center w-14 h-14 ${isNext ? "lms-jump" : ""}`}
                     style={{ background: isNext ? "var(--lms-accent)" : got ? "#3a3a3a" : "#2b2b2b", "--node-ledge": isNext ? "color-mix(in srgb, var(--lms-accent) 50%, black)" : "#141414" } as React.CSSProperties}>
                 {got ? <PackageOpen size={24} className="text-white" /> : isNext ? <Gift size={24} className="text-white" /> : <Lock size={20} className="text-l-text3" />}
               </span>

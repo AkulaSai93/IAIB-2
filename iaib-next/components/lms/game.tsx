@@ -112,7 +112,7 @@ export function QuestsCard({ s }: { s: Student }) {
               </div>
               <button type="button" disabled={!done || claimed} aria-label={claimed ? "Chest opened" : done ? `Open chest for ${q.xp} XP` : "Chest locked"}
                       onClick={(e) => { patch({ questsClaimed: [...(s.questsClaimed ?? []), q.id] }); addXp(q.xp, `Quest: ${q.title}`, { x: e.clientX, y: e.clientY - 20 }); }}
-                      className={`grid place-items-center w-10 h-10 flex-none transition-transform ${done && !claimed ? "bg-l-accent text-white jump cursor-pointer hover:scale-105" : "bg-white/[0.04] text-l-text3"}`}>
+                      className={`grid place-items-center w-10 h-10 flex-none transition-transform ${done && !claimed ? "bg-l-accent text-white lms-jump cursor-pointer hover:scale-105" : "bg-white/[0.04] text-l-text3"}`}>
                 {claimed ? <PackageOpen size={18} /> : <Gift size={18} />}
               </button>
             </li>
@@ -160,7 +160,7 @@ export function Celebration({ title, sub, xp, minutes, onDone }: { title: string
         ))}
       </div>
       <div className="relative text-center max-w-[520px] w-full">
-        <div className="jump inline-block"><Sprite size={110} /></div>
+        <div className="lms-jump inline-block"><Sprite size={110} /></div>
         <h2 className="m-0 mt-6 font-display font-bold text-l-accent text-[clamp(2rem,5vw,2.8rem)] tracking-[-0.02em]">{title}</h2>
         <p className="m-0 mt-2 text-l-text2 text-[16px]">{sub}</p>
         <div className="grid grid-cols-3 gap-3 mt-9">

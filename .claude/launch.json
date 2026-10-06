@@ -4,14 +4,8 @@
     {
       "name": "iaib-next",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "iaib-next", "run", "dev"],
-      "port": 3000
-    },
-    {
-      "name": "iaib",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4178"],
-      "port": 4178
+      "runtimeArgs": ["--prefix", "iaib-next", "run", "dev", "--", "-p", "3001"],
+      "port": 3001
     }
   ]
 }

@@ -54,8 +54,8 @@ export const STEPS: Step[] = [
     float: { tick: true, text: "Enrolled" },
   },
   {
-    no: "02", title: "Live learning", bar: "curriculum.live",
-    body: "Thirty live sessions with industry mentors, covering AI fundamentals, Python, LLMs, and agentic AI.",
+    no: "02", title: "Hybrid Learning Model", bar: "curriculum.live",
+    body: "Recorded Sessions and Live Master Classes",
     rows: [
       { label: "Foundations", chip: "Done", tone: "mute" },
       { label: "Python", chip: "Done", tone: "mute" },
@@ -66,7 +66,7 @@ export const STEPS: Step[] = [
   },
   {
     no: "03", title: "Screening + vibecoding", bar: "screening.test", cursor: true,
-    body: "Clear a 40-minute test, then vibe code a working prototype from one of fifty prompts to earn a finale spot.",
+    body: "From one of our pre-set problem statements to earn a spot in the finale",
     rows: [
       { label: "Test · 40 min", chip: "Passed", tone: "mute" },
       { label: "Prototype", chip: "Building", tone: "on", live: true },
@@ -76,9 +76,9 @@ export const STEPS: Step[] = [
   },
   {
     no: "04", title: "Grand finale", bar: "finale.bengaluru", id: "finale",
-    body: "36 hours, offline in Bengaluru. Build, pitch to VCs, and compete for the ₹20 lakh prize pool.",
+    body: "Offline in SSAHE Campus facilitated by uGSOT (near Bengaluru)",
     rows: [
-      { label: "Build · 36 h", chip: "Running", tone: "on", live: true },
+      { label: "Build", chip: "Running", tone: "on", live: true },
       { label: "Pitch to VCs", chip: "Queued", tone: "soft" },
     ],
     float: { text: "₹20L pool" },
@@ -107,14 +107,27 @@ export const MODULES = [
     items: ["Framing a problem worth solving", "Planning a 36-hour build", "Pitching to a room of VCs"] },
 ];
 
-/* PLACEHOLDER. The name, role and the six logos are stand-ins, and one supplied
-   portrait fills every card. Nobody named here is the person pictured. */
-export const MENTOR = {
-  name: "Vishwa Mohan",
-  role: "Founder & CEO, upGrad School of Technology",
-  photo: "/assets/mentors/mentor.png",
+/* The mentors. Portraits are trimmed transparent cut-outs in
+   public/assets/mentors. ROLE IS A PLACEHOLDER until each mentor's title is
+   confirmed. The company logos under each card are still the shared row
+   below; per-mentor logos can replace them once they're supplied. */
+export const MENTORS = [
+  { name: "Gladden Rumao", role: "Staff Software AI Engineer", photo: "/assets/mentors/gladden-rumao.webp", logos: ["upgrad", "barclays"] },
+  { name: "Gaurav Kaushik", role: "Senior Staff Software Engineer & Problem Solving Track Lead", photo: "/assets/mentors/gaurav-kaushik.webp", logos: ["salesforce", "paypal", "microsoft"] },
+  { name: "Rishabh Bafna", role: "Senior AI Engineer & Lead Instructor", photo: "/assets/mentors/rishabh-bafna.webp", logos: ["upgrad", "iiitd"] },
+  { name: "Rahul Yadav", role: "SDE 2 + Lead Instructor", photo: "/assets/mentors/rahul-yadav.webp", logos: ["upgrad"] },
+  { name: "Jyoti Nigam", role: "Staff Software AI Engineer", photo: "/assets/mentors/jyoti-nigam.webp", logos: ["upgrad"] },
+];
+
+/* company marks for the mentor cards, keyed so each mentor lists their own */
+export const MENTOR_LOGOS: Record<string, { src: string; alt: string; cls: string }> = {
+  upgrad: { src: "/assets/logos/upgrad.png", alt: "upGrad School of Technology", cls: "lg-u" },
+  barclays: { src: "/assets/logos/barclays.png", alt: "Barclays", cls: "lg-w lg-mono" },
+  iiitd: { src: "/assets/logos/iiitd.png", alt: "IIIT Delhi", cls: "lg-sq lg-mono" },
+  salesforce: { src: "/assets/logos/salesforce.svg", alt: "Salesforce", cls: "lg-sf" },
+  paypal: { src: "/assets/logos/paypal.svg", alt: "PayPal", cls: "lg-p" },
+  microsoft: { src: "/assets/logos/microsoft.svg", alt: "Microsoft", cls: "lg-sq" },
 };
-export const MENTOR_COUNT = 8;
 
 export const LOGOS = [
   { src: "/assets/logos/upgrad.png", alt: "upGrad School of Technology", cls: "lg-u" },
@@ -135,16 +148,16 @@ export const FAQS = [
   ["Who can participate?", "Any student in classes 9 to 12, studying at a school in India."],
   ["Is there a registration fee?", "No. Registration and participation are completely free."],
   ["Do I need prior coding or AI experience?", "No. The learning sessions start from the basics. All you need is curiosity about AI."],
-  ["How are the learning sessions conducted?", "Sessions are held live online, on weekend mornings. They won’t clash with school, and you’ll still have the rest of your weekend free."],
-  ["What does the screening round involve?", "There are two steps. First, a 40-minute test on what you learned in the sessions. Second, a small project that you build from one of 50 prompts we share. Screening is done individually."],
+  ["How are the learning sessions conducted?", "Recorded sessions will be uploaded periodically and the schedule of live master classes will be shared in advance. Live master classes will be scheduled to work around school hours."],
+  ["What does the screening round involve?", "A working prototype that you build from one of our pre-set problem statements to earn a spot in the finale."],
   ["How is the project evaluated?", "Projects are judged on five criteria: originality, ethical use of AI, clarity, scalability, and potential for real-world impact."],
   ["Can I participate with my friends as a team?", "Screening is individual. At the offline buildathon, finalists compete in teams of four, and teams are formed on the day of the event."],
-  ["Will travel and accommodation be covered for finalists?", "Yes. Travel and accommodation costs are reimbursed once receipts are verified, so keep all your bills. Costs are reimbursed for one child and one parent only. The maximum cap on the child’s return travel is still to be confirmed."],
-  ["How does the ₹2 crore scholarship work?", "The scholarship is a pool of ₹2 crore for participants who take admission to the upGrad School of Technology campus programme in next year’s cohort. It becomes null and void if the student takes admission elsewhere."],
-  ["Is parental consent required?", "Yes. A parent or guardian must give consent at registration. We also recommend that a parent or guardian accompany the student throughout the offline buildathon."],
+  ["Will travel and accommodation be covered for finalists?", "Yes. It’s mandatory for students to be accompanied by a parent/legal guardian. Travel and accommodation costs will be reimbursed up to Rs. xxxxx, subject to submission of valid receipts."],
+  ["How does the ₹2 crore scholarship work?", "The scholarship may be awarded from a pool of Rs. 2 crore, for participants who are currently in class 12 and take admission to the upGrad School of Technology campus programme in the 2027 cohort."],
+  ["Is parental consent required?", "Yes. It is mandatory to have consent from a parent/legal guardian."],
   ["Who owns the solutions built during the buildathon?", "The solutions belong to the teams that built them. Participants are free to keep developing their projects after the event."],
-  ["What do I need for the online sessions?", "A laptop or computer with a stable internet connection."],
-  ["What if I miss a live session?", "You can access recorded sessions, which will be uploaded."],
+  ["What do I need for the online sessions?", "A laptop/computer with a functional microphone and camera, and a stable internet connection of minimum 2 Mbps."],
+  ["What if I miss a live master class?", "You can access recordings of the sessions on the student portal."],
   ["What language are the sessions taught in?", "English."],
   ["How will I know if I’ve been shortlisted?", "Shortlisted participants will be informed by email and phone."],
 ] as const;

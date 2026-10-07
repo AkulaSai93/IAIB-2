@@ -38,8 +38,7 @@ export default function Page() {
         <section id="how" className="border-b border-line">
           <Sec>
             <SecHead>
-              <H2>How does it <Hl>work?</Hl></H2>
-              <Sub>Just a quick 4-step process and you&rsquo;re in.</Sub>
+              <H2>The Four <Hl>Stages</Hl></H2>
             </SecHead>
             <Steps />
             <div className="flex justify-center mt-12 max-[560px]:mt-9 max-[560px]:[&>*]:w-full max-[560px]:[&>*]:justify-center">
@@ -83,10 +82,10 @@ export default function Page() {
           <Sec>
             <div className="grid grid-cols-[0.8fr_1.6fr] gap-10 items-center max-[1100px]:grid-cols-1 max-[860px]:gap-[34px]">
               <div>
-                <H2>Bring the <Hl>AI Buildathon<br />to your school</Hl></H2>
+                <H2>Bring the <Hl>IAIB Buildathon<br />to your school</Hl></H2>
                 <Sub>
                   Your students are ready to build the future. Give them the opportunity to learn AI for free,
-                  build real-world projects and compete nationally for &#8377;20L+ in prizes.
+                  build real-world projects and compete nationally for &#8377;20L in prizes.
                 </Sub>
                 <div className="flex flex-wrap gap-3 mt-8">
                   <RegisterButton school>Register your school</RegisterButton>

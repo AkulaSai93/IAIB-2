@@ -48,7 +48,7 @@ function Card({ s }: { s: Step }) {
       </div>
 
       <div className="px-5 pt-5 pb-6 mt-auto">
-        <div className="font-body text-[12px] text-fg-dim tracking-[0.1em]">Step {s.no}</div>
+        <div className="font-body text-[12px] text-fg-dim tracking-[0.1em]">Stage {Number(s.no)}</div>
         <h3 className="font-display text-[1.16rem] font-semibold tracking-[-0.015em] my-[9px] mb-[10px] text-white text-balance">
           {s.title}
         </h3>

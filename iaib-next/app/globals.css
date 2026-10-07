@@ -247,7 +247,7 @@ html { scrollbar-color: #2e2e2e #000; scrollbar-width: thin }
 .mtrack { display: flex; width: max-content; will-change: transform }
 .mtrack > * { flex: 0 0 var(--mcw); width: var(--mcw); margin: 0 var(--mgap) 0 0 }
 @media (prefers-reduced-motion: no-preference) {
-  .mtrack { animation: mslide 64s linear infinite }
+  .mtrack { animation: mslide 48s linear infinite }
   /* stop it where the pointer is, so a face can actually be read */
   .mrail:hover .mtrack, .mrail:focus-within .mtrack { animation-play-state: paused }
 }
@@ -276,7 +276,7 @@ html { scrollbar-color: #2e2e2e #000; scrollbar-width: thin }
 /* needs a cut-out with a real alpha channel, trimmed to its content: a
    geometric mask faking the contour reads worse than no breakout at all */
 .m-cut { position: absolute; left: 1%; right: 1%; bottom: 0; top: 5%; z-index: 2;
-         background: var(--photo, none) bottom center / contain no-repeat }
+         background: var(--photo, none) bottom center / auto 100% no-repeat }   /* same height for every portrait, whatever its crop */
 /* the name lands on a photograph, so it carries its own ground */
 .m-scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 52%; z-index: 3;
   background: linear-gradient(180deg, transparent, rgba(0,0,0,.55) 38%, rgba(0,0,0,.88) 72%, #000) }
@@ -299,6 +299,9 @@ html { scrollbar-color: #2e2e2e #000; scrollbar-width: thin }
 .lg { display: block; width: auto; height: auto; max-width: 100%; object-fit: contain;
       opacity: .72; transition: opacity .2s }
 .mcard:hover .lg { opacity: .95 }
+.lg-mono { filter: brightness(0) invert(1) }   /* colour PNGs flattened to the same grey as the SVG marks */
+.m-co { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 26px; min-height: 34px }
+.lg-sf { max-height: 30px }
 .lg-w  { max-height: 13px }   /* wordmarks: Oracle, Walmart, LinkedIn */
 .lg-p  { max-height: 22px }   /* PayPal: monogram over the name */
 .lg-sq { max-height: 22px }   /* PW: a square mark needs the extra height */

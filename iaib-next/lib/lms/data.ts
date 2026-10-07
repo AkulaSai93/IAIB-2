@@ -2,7 +2,7 @@
    response, so swapping in the real backend means replacing this file's
    values (or the functions that read them), not the components. */
 
-import { MODULES, MENTOR } from "@/lib/data";
+import { MODULES, MENTORS } from "@/lib/data";
 
 /* ---------------------------------------------------------------- student */
 
@@ -133,7 +133,7 @@ export const SESSIONS: Session[] = MODULES.flatMap((m, mi) => m.items.map((title
     no: i + 1,
     date: new Date(START.getTime() + i * 86400000),
     minutes: LENGTHS[i % LENGTHS.length],
-    mentor: MENTOR.name,
+    mentor: MENTORS[i % MENTORS.length].name,
   }));
 
 export type SessionState = "done" | "current" | "upcoming" | "locked";
